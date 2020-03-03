@@ -113,6 +113,9 @@ os.string.linkify = function(text, opt_target, opt_class, opt_title, opt_htmlTex
       html.push('target="');
       html.push(opt_target);
       html.push('" ');
+      if (opt_target === '_blank') {
+        html.push('rel="noopener" ');
+      }
     }
     if (opt_clickHandler) {
       html.push('ng-click="');
