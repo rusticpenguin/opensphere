@@ -240,3 +240,28 @@ os.string.randomString = function() {
   }
   return String.fromCharCode(code + 50) + s.substring(1);
 };
+
+
+/**
+ * Truncates a string to a certain length and removes ending punctuation
+ *
+ * @param {string} str
+ * @param {number} chars
+ * @param {boolean=} opt_protectEscapedCharacters
+ * @return {string}
+ */
+os.string.truncate = function(str, chars, opt_protectEscapedCharacters) {
+  if (opt_protectEscapedCharacters) {
+    str = goog.string.unescapeEntities(str);
+  }
+
+  if (str.length > chars) {
+    str = str.substring(0, chars - 3).replace(/[\s.,!?"']+$/, '') + '...';
+  }
+
+  if (opt_protectEscapedCharacters) {
+    str = goog.string.htmlEscape(str);
+  }
+
+  return str;
+};
